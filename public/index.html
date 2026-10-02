@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>MOS Campinho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+
+<!-- ===================== LOGIN ===================== -->
+<section id="login" hidden>
+  <form class="login-card" id="loginForm" novalidate>
+    <div class="brandmark">
+      <svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true"><rect x="11" y="1" width="12" height="6" rx="1.5" fill="var(--ink-2)"/><rect x="3" y="7" width="28" height="31" rx="9" fill="var(--accent)"/><rect x="3" y="18" width="28" height="3" fill="var(--brand)"/></svg>
+      <div><h1>MOS Campinho</h1><small>Distribuidora de Gás Campinho · Sistema de Gestão</small></div>
+    </div>
+    <div class="field"><label class="label" for="lgUser">Usuário</label><input id="lgUser" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>
+    <div class="field"><label class="label" for="lgPass">Senha</label><input id="lgPass" name="password" type="password" autocomplete="current-password" required></div>
+    <div id="lgErr" class="err" role="alert" hidden></div>
+    <button class="btn btn-primary" id="lgBtn" type="submit">Entrar</button>
+    <p class="hint">Acesso restrito à equipe da Distribuidora Campinho. Esqueceu a senha? Fale com o CEO.</p>
+  </form>
+</section>
+
+<!-- ===================== TROCA DE SENHA ===================== -->
+<section id="pwScreen" hidden>
+  <form class="login-card" id="pwForm" novalidate>
+    <div><h1 class="pw-title">Defina sua senha</h1>
+      <p class="hint">Sua senha atual é provisória. Escolha uma nova com pelo menos 10 caracteres, misturando letras e números.</p></div>
+    <div class="field"><label class="label" for="pwCur">Senha atual</label><input id="pwCur" type="password" autocomplete="current-password" required></div>
+    <div class="field"><label class="label" for="pwNew">Nova senha</label><input id="pwNew" type="password" autocomplete="new-password" minlength="10" required></div>
+    <div class="field"><label class="label" for="pwNew2">Repita a nova senha</label><input id="pwNew2" type="password" autocomplete="new-password" minlength="10" required></div>
+    <div id="pwErr" class="err" role="alert" hidden></div>
+    <button class="btn btn-primary" type="submit">Salvar nova senha</button>
+    <button class="btn btn-quiet" id="pwCancel" type="button">Sair</button>
+  </form>
+</section>
+
+<!-- ===================== APP ===================== -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="brandmark">
+      <svg width="24" height="28" viewBox="0 0 34 40" aria-hidden="true"><rect x="11" y="1" width="12" height="6" rx="1.5" fill="rgba(255,255,255,.7)"/><rect x="3" y="7" width="28" height="31" rx="9" fill="var(--accent)"/><rect x="3" y="18" width="28" height="3" fill="var(--brand)"/></svg>
+      <div><h1>MOS Campinho</h1><small>Campo Grande · RJ</small></div>
+    </div>
+    <div class="top-alerts" id="topAlerts"></div>
+    <div class="user">
+      <div class="who"><b id="uName"></b><span id="uRole"></span></div>
+      <button class="btn" id="pwBtn" type="button">Trocar senha</button>
+      <button class="btn" id="logoutBtn" type="button">Sair</button>
+    </div>
+  </header>
+  <nav id="nav" aria-label="Módulos"></nav>
+  <main id="main"><p class="loading">Carregando…</p></main>
+</div>
+
+<div id="overlayRoot"></div>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

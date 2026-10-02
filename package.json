@@ -1,0 +1,17 @@
+{
+  "name": "mos-campinho",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MOS — Manual Operacional e Sistema de Gestão da Distribuidora Campinho (MVP)",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply mos-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply mos-db --remote",
+    "user:create": "node scripts/create-user.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.146.0"
+  }
+}

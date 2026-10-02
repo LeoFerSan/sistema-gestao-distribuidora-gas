@@ -1,0 +1,21 @@
+name = "mos-campinho"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# Front-end estático em ./public. O Worker roda primeiro em todas as rotas
+# para aplicar os cabeçalhos de segurança e atender a API em /api/*.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mos-db"
+database_id = "COLE_AQUI_O_ID_DO_BANCO"   # gerado por: npx wrangler d1 create mos-db
+migrations_dir = "migrations"
+
+# Domínio próprio (ative depois que lbhorizon.com.br estiver na Cloudflare):
+# routes = [
+#   { pattern = "mos.lbhorizon.com.br", custom_domain = true }
+# ]
