@@ -12,7 +12,7 @@ run_worker_first = true
 [[d1_databases]]
 binding = "DB"
 database_name = "mos-db"
-database_id = "COLE_AQUI_O_ID_DO_BANCO"   # gerado por: npx wrangler d1 create mos-db
+database_id = "8b418fff-d9b3-486a-ab7f-bfa51a2a437b"
 migrations_dir = "migrations"
 
 # Endereço definitivo. O domínio lbhorizon.com.br já está na Cloudflare;
