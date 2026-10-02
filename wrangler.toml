@@ -2,6 +2,13 @@ name = "mos-campinho"
 main = "src/index.js"
 compatibility_date = "2026-09-01"
 
+# Endereço definitivo. O domínio lbhorizon.com.br já está na Cloudflare;
+# no deploy, a Cloudflare cria o registro de DNS e o certificado HTTPS deste subdomínio.
+# (Fica antes das seções entre colchetes, senão o TOML o atribui à seção anterior.)
+routes = [
+  { pattern = "gasflow.lbhorizon.com.br", custom_domain = true }
+]
+
 # Front-end estático em ./public. O Worker roda primeiro em todas as rotas
 # para aplicar os cabeçalhos de segurança e atender a API em /api/*.
 [assets]
@@ -14,9 +21,3 @@ binding = "DB"
 database_name = "mos-db"
 database_id = "8b418fff-d9b3-486a-ab7f-bfa51a2a437b"
 migrations_dir = "migrations"
-
-# Endereço definitivo. O domínio lbhorizon.com.br já está na Cloudflare;
-# no deploy, a Cloudflare cria o registro de DNS e o certificado HTTPS deste subdomínio.
-routes = [
-  { pattern = "gasflow.lbhorizon.com.br", custom_domain = true }
-]
