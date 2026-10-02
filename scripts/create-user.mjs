@@ -6,7 +6,7 @@
 // O usuário é obrigado a trocar a senha no primeiro acesso.
 
 import { pbkdf2Sync, randomBytes } from "node:crypto";
-import { execFileSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import { writeFileSync, unlinkSync, mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -56,8 +56,14 @@ const dir = mkdtempSync(join(tmpdir(), "mos-"));
 const file = join(dir, "user.sql");
 writeFileSync(file, sql);
 try {
-  execFileSync("npx", ["wrangler", "d1", "execute", "mos-db", remote ? "--remote" : "--local", "--file", file], { stdio: "inherit" });
+  // shell: true para funcionar também no Windows (npx é um .cmd)
+  const r = spawnSync(`npx wrangler d1 execute mos-db ${remote ? "--remote" : "--local"} --file "${file}"`,
+    { stdio: "inherit", shell: true });
+  if (r.status !== 0) throw new Error("Falha ao gravar o usuário no banco (veja a mensagem do wrangler acima).");
   console.log(`\nUsuário "${username}" (${role}) pronto no banco ${remote ? "de produção" : "local"}. Troca de senha exigida no primeiro acesso.`);
+} catch (e) {
+  console.error(e.message);
+  process.exitCode = 1;
 } finally {
   unlinkSync(file);
 }
