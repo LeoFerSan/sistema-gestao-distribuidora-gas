@@ -32,7 +32,7 @@ npm install
 npx wrangler login                     # abre o navegador para autorizar sua conta Cloudflare
 npx wrangler d1 create mos-db          # copie o database_id exibido para o wrangler.toml
 npm run db:migrate:remote              # cria as tabelas no banco de produção
-npm run deploy                         # publica em https://mos-campinho.<sua-conta>.workers.dev
+npm run deploy                         # publica em https://gasflow.lbhorizon.com.br
 ```
 
 Crie os usuários (a senha é pedida no terminal e vale só para o primeiro acesso):
@@ -55,13 +55,14 @@ npm run user:create -- ceo "CEO" ceo   # sem --remote = banco local
 npm run dev                              # http://localhost:8787
 ```
 
-## Domínio próprio (mos.lbhorizon.com.br)
+## Endereço (gasflow.lbhorizon.com.br)
 
-1. No painel da Cloudflare, **Add a site** → `lbhorizon.com.br` (plano Free).
-2. A Cloudflare mostra dois nameservers. No **Registro.br**, em *DNS → Alterar servidores DNS*, troque pelos dois da Cloudflare.
-   Antes, confira se a Cloudflare importou todos os registros atuais (e-mail/MX, site), para nada sair do ar.
-3. Quando o domínio aparecer como *Active*, descomente o bloco `routes` no `wrangler.toml` e rode `npm run deploy`.
-   A Cloudflare cria o certificado HTTPS automaticamente.
+O sistema é publicado no subdomínio **gasflow.lbhorizon.com.br**, configurado em `routes` no `wrangler.toml`.
+Como o domínio `lbhorizon.com.br` já está na Cloudflare, o `npm run deploy` cria sozinho o registro de DNS
+e o certificado HTTPS. O site principal em `lbhorizon.com.br` não é afetado.
+
+Antes do primeiro deploy, confira no painel da Cloudflare (DNS de `lbhorizon.com.br`) que não existe
+um registro `gasflow` criado manualmente; se existir, apague-o, ou o deploy recusa o domínio.
 
 ## Estrutura
 

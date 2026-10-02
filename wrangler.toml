@@ -15,7 +15,8 @@ database_name = "mos-db"
 database_id = "COLE_AQUI_O_ID_DO_BANCO"   # gerado por: npx wrangler d1 create mos-db
 migrations_dir = "migrations"
 
-# Domínio próprio (ative depois que lbhorizon.com.br estiver na Cloudflare):
-# routes = [
-#   { pattern = "mos.lbhorizon.com.br", custom_domain = true }
-# ]
+# Endereço definitivo. O domínio lbhorizon.com.br já está na Cloudflare;
+# no deploy, a Cloudflare cria o registro de DNS e o certificado HTTPS deste subdomínio.
+routes = [
+  { pattern = "gasflow.lbhorizon.com.br", custom_domain = true }
+]
